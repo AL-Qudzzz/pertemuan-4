@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Tambah Mahasiswa</title>
+
+    <!-- Internal CSS -->
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f9;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        padding: 20px;
+        flex-direction: column; 
+        overflow-y: auto;
+      }
+
+      h2 {
+        text-align: center;
+        color: #4a90e2;
+        margin-bottom: 20px;
+      }
+
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        margin-bottom: 20px; 
+      }
+
+      label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      .gender-label {
+        margin-right: 15px;
+        font-size: 16px;
+      }
+
+      button[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #357abd;
+      }
+
+      button[type="button"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 10px; 
+        margin-bottom: 20px;
+      }
+
+      button[type="button"]:hover {
+        background-color: #357abd;
+        transform: scale(1.05); 
+      }
+
+      /* css for gradient bg */
+      body {
+        background: linear-gradient(
+          39deg,
+          #8d1ff3,
+          #f4ab34,
+          #52cffc,
+          #1342f3,
+          #3b6f26
+        );
+        background-size: 300% 300%;
+        animation: gradient-animation 10s ease infinite;
+      }
+
+      @keyframes gradient-animation {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Untuk posisi clock */
+      #clock {
+        font-size: 24px;
+        font-weight: bold;
+        color: whitesmoke;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      /* Mengatur kontainer agar posisi clock dan form bisa diatur */
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 500px; 
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="clock"></div>
+      <div id="formContainer">
+        <!-- Form awal -->
+        <form class="student-form">
+          <h2>Tambah Data Mahasiswa</h2>
+          <label for="Nama">Masukkan Nama :</label>
+          <input type="text" name="Nama" id="Nama" placeholder="Nama Lengkap" />
+
+          <label for="nim">Masukkan NIM :</label>
+          <input
+            type="number"
+            name="nim"
+            id="nim"
+            placeholder="Nomor Induk Mahasiswa"
+          />
+
+          <label for="gender">Jenis Kelamin :</label>
+          <label class="gender-label">
+            <input type="radio" name="gender" value="Laki-laki" /> Laki-Laki
+          </label>
+          <label class="gender-label">
+            <input type="radio" name="gender" value="Perempuan" /> Perempuan
+          </label>
+          <br /><br />
+
+          <button type="submit" id="submitAlert" value="Submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- Button to add new form -->
+      <button type="button" id="addForm">Tambah Form Mahasiswa Baru</button>
+    </div>
+
+    
+    <script>
+      // uppercase
+      function convertToUppercase(input) {
+        input.value = input.value.toUppercase();
+      }
+
+      // Clock
+      function updateClock() {
+        var now = new Date();
+        var hours = now.getHours().toString().padStart(2, "0");
+        var minutes = now.getMinutes().toString().padStart(2, "0");
+        var seconds = now.getSeconds().toString().padStart(2, "0");
+        var timeString = hours + ":" + minutes + ":" + seconds;
+        document.getElementById("clock").textContent = timeString;
+      }
+
+      // Clock
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // Add new form 
+      document.getElementById("addForm").addEventListener("click", function () {
+        const formContainer = document.getElementById("formContainer");
+        const newForm = document.querySelector(".student-form").cloneNode(true);
+        formContainer.appendChild(newForm);
+      });
+
+      // Alert when submitting
+      document
+        .getElementById("submitAlert")
+        .addEventListener("click", function () {
+          alert("Selamat data telah berhasil disimpan");
+        });
+
+        // Uppercase 
+        
+    </script>
+  </body>
+</html>
